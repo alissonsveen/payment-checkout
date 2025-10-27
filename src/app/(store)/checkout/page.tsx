@@ -127,12 +127,6 @@ export default function CheckoutPage() {
               >
                 Voltar
               </Button>
-              <div>
-                <p className="text-sm rounded-full text-red-500 flex justify-center items-center ">
-                  <CircleAlert className="size-4 mr-2" /> Revise antes de
-                  continuar
-                </p>
-              </div>
             </div>
 
             <div>
