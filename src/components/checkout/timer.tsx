@@ -32,7 +32,17 @@ const Timer: React.FC<TimerProps> = ({ onExpire }) => {
   }
 
   return (
-    <div style={{ fontSize: "2rem", fontWeight: "bold" }}>
+    <div
+      className="text-2xl font-bold"
+      role="timer"
+      aria-live="polite"
+      aria-atomic="true"
+      aria-label={
+        seconds <= 0
+          ? "Tempo esgotado"
+          : `Tempo restante: ${formatTime(seconds)}`
+      }
+    >
       {seconds <= 0 ? "Tempo esgotado!" : formatTime(seconds)}
     </div>
   )

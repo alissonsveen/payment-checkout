@@ -26,8 +26,6 @@ const exampleCode = "23790.00008 60000.000009 01234.567890 1 23450000010000"
 export default function BoletoMethod() {
   const router = useRouter()
   const setPaymentMethod = useCheckoutStore((s) => s.setPaymentMethod)
-  const simulatedOutcome = useCheckoutStore((s) => s.simulatedOutcome)
-  const setSimulatedOutcome = useCheckoutStore((s) => s.setSimulatedOutcome)
   const setBoletoExpiration = useCheckoutStore((s) => s.setBoletoExpiration)
 
   const [isLoading, setIsLoading] = useState(false)

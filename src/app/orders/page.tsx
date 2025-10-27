@@ -75,71 +75,71 @@ export default function OrdersPage() {
                 {orders.map((o) => (
                   <div
                     key={o.id}
-                    className="bg-white dark:bg-zinc-700 border border-zinc-200 rounded-xl p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3"
+                    className="bg-white dark:bg-zinc-700 border border-zinc-200 rounded-xl p-4 space-y-3"
                   >
-                    <div className="flex-1">
-                      <div className="flex items-start justify-between">
-                        <div>
-                          <h3 className="text-sm font-semibold">
-                            Pedido #{o.id}
-                          </h3>
-                          <div className="text-xs text-muted-foreground">
-                            {formatDate(o.date)}
-                          </div>
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-sm font-semibold">
+                          Pedido #{o.id}
+                        </h3>
+                        <div className="text-xs text-muted-foreground">
+                          {formatDate(o.date)}
                         </div>
-                        <div className="ml-4 flex items-center gap-2">
-                          <div className="text-sm text-green-400 font-medium rounded-full px-3 py-1 bg-zinc-100 dark:bg-zinc-400">
-                            {o.status}
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <div className="text-xs text-green-400 font-medium rounded-full px-3 py-1 bg-zinc-100 dark:bg-zinc-400 whitespace-nowrap">
+                          {o.status}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                      <div className="flex gap-1.5 shrink-0">
+                        {(o.items || []).slice(0, 3).map((it, i) => (
+                          <div
+                            key={i}
+                            className="w-12 h-12 rounded-lg overflow-hidden border-2 border-white dark:border-zinc-600 bg-gray-50 shadow-sm"
+                          >
+                            {it.image ? (
+                              <Image
+                                src={it.image}
+                                alt={it.name}
+                                width={48}
+                                height={48}
+                                className="object-cover w-full h-full"
+                              />
+                            ) : (
+                              <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-zinc-700 dark:to-zinc-800 flex items-center justify-center text-xs font-semibold text-muted-foreground">
+                                {it.name
+                                  ? it.name.charAt(0).toUpperCase()
+                                  : "?"}
+                              </div>
+                            )}
                           </div>
+                        ))}
+
+                        {(o.items || []).length > 3 && (
+                          <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 dark:from-zinc-700 dark:to-zinc-800 text-xs font-semibold text-muted-foreground border-2 border-white dark:border-zinc-600 shadow-sm">
+                            +{(o.items || []).length - 3}
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="flex-1 min-w-0">
+                        <div className="text-sm text-muted-foreground">
+                          {totalItems(o)} itens
+                        </div>
+                        <div className="text-sm mt-1 line-clamp-2">
+                          {addressLine(o)}
                         </div>
                       </div>
 
-                      <div className="mt-3 flex items-center gap-4">
-                        <div className="flex -space-x-2">
-                          {(o.items || []).slice(0, 3).map((it, i) => (
-                            <div
-                              key={i}
-                              className="w-12 h-12 rounded-md overflow-hidden border bg-gray-50"
-                            >
-                              {it.image ? (
-                                <Image
-                                  src={it.image}
-                                  alt={it.name}
-                                  width={48}
-                                  height={48}
-                                  className="object-cover"
-                                />
-                              ) : (
-                                <div className="w-full h-full bg-gray-100 flex items-center justify-center text-xs text-muted-foreground">
-                                  {it.name
-                                    ? it.name.charAt(0).toUpperCase()
-                                    : "?"}
-                                </div>
-                              )}
-                            </div>
-                          ))}
-
-                          {(o.items || []).length > 3 && (
-                            <div className="w-12 h-12 rounded-md flex items-center justify-center bg-gray-100 text-sm text-muted-foreground border">
-                              +{(o.items || []).length - 3}
-                            </div>
-                          )}
+                      <div className="text-left sm:text-right shrink-0">
+                        <div className="text-xs text-muted-foreground">
+                          Total
                         </div>
-
-                        <div className="flex-1">
-                          <div className="text-sm text-muted-foreground">
-                            {totalItems(o)} itens
-                          </div>
-                          <div className="text-sm mt-1">{addressLine(o)}</div>
-                        </div>
-
-                        <div className="text-right">
-                          <div className="text-sm text-muted-foreground">
-                            Total
-                          </div>
-                          <div className="text-lg font-semibold mt-1">
-                            {formatCurrency(orderTotal(o))}
-                          </div>
+                        <div className="text-base sm:text-lg font-semibold mt-1">
+                          {formatCurrency(orderTotal(o))}
                         </div>
                       </div>
                     </div>

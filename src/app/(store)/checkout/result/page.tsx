@@ -14,12 +14,14 @@ import ResultHeader from "@/components/checkout/ResultHeader"
 import OrderCard from "@/components/checkout/OrderCard"
 import { addOrder } from "@/lib/orders"
 import { useCart } from "@/hooks/useCart"
+import { toast } from "sonner"
 
 export default function ResultPage() {
   const router = useRouter()
   const { status, draftOrderId, clearCheckout } = useCheckoutStore()
 
   const [copied, setCopied] = useState(false)
+  const [orderSaved, setOrderSaved] = useState(false)
 
   const handlePrimary = () => {
     if (statusVal === "pago") {
@@ -44,14 +46,18 @@ export default function ResultPage() {
     try {
       await navigator.clipboard.writeText(String(draftOrderId))
       setCopied(true)
+      toast.success("ID do pedido copiado!")
       setTimeout(() => setCopied(false), 1500)
-    } catch {}
+    } catch (error) {
+      console.error("Erro ao copiar:", error)
+      toast.error("Não foi possível copiar. Por favor, copie manualmente.")
+    }
   }
   const statusVal = status ?? "unknown"
   const { items } = useCart()
 
   useEffect(() => {
-    if (statusVal === "pago" && draftOrderId) {
+    if (statusVal === "pago" && draftOrderId && !orderSaved) {
       try {
         const snapshotItems = items.map((it) => ({
           productId: it.product.id,
@@ -73,9 +79,15 @@ export default function ResultPage() {
           items: snapshotItems,
           shipping: useCheckoutStore.getState().shipping ?? null,
         })
-      } catch {}
+
+        setOrderSaved(true)
+        toast.success("Pedido salvo com sucesso!")
+      } catch (error) {
+        console.error("Falha ao salvar pedido:", error)
+        toast.error("Não foi possível salvar o pedido. Por favor, anote o ID.")
+      }
     }
-  }, [statusVal, draftOrderId, items])
+  }, [statusVal, draftOrderId, items, orderSaved])
 
   return (
     <div className="max-w-md mx-auto py-8 px-4">

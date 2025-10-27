@@ -1,22 +1,11 @@
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { useCart } from "@/hooks/useCart"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { useRouter } from "next/navigation"
-import { useMemo } from "react"
 import { Box } from "lucide-react"
 
 export function OrderSummaryPage() {
   const { items, total } = useCart()
-  const router = useRouter()
-  const disabled = useMemo(() => items.length === 0, [items.length])
 
   const fmt = new Intl.NumberFormat("pt-BR", {
     style: "currency",

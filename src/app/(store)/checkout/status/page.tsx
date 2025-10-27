@@ -85,17 +85,27 @@ export default function StatusPage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center justify-center gap-2">
-            <LoaderCircle className="h-5 w-5 animate-spin" />
             Processando o pagamento...
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-col items-center gap-4 py-6">
-            <LoaderCircle className="h-16 w-16 animate-spin" aria-hidden />
+          <div
+            className="flex flex-col items-center gap-4 py-6"
+            role="status"
+            aria-live="polite"
+            aria-busy="true"
+          >
+            <LoaderCircle
+              className="h-16 w-16 animate-spin"
+              aria-hidden="true"
+            />
             <div className="text-center text-sm text-muted-foreground">
               Estamos processando seu pagamento. Isso pode levar alguns
               segundos.
             </div>
+            <span className="sr-only">
+              Processando pagamento. Por favor, aguarde. Não feche esta página.
+            </span>
             {draftOrderId && (
               <div className="text-xs text-muted-foreground">
                 Pedido {draftOrderId}

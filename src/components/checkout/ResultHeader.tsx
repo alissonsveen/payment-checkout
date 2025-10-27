@@ -30,16 +30,34 @@ export default function ResultHeader({ status }: Props) {
       <div
         className={`rounded-full flex items-center justify-center w-20 h-20 ring-4 ring-white shadow-md ${bgColor}`}
         role="img"
+        aria-label={
+          status === "pago"
+            ? "Ícone de sucesso - pagamento aprovado"
+            : status === "falhou"
+            ? "Ícone de erro - pagamento recusado"
+            : status === "expirado"
+            ? "Ícone de tempo esgotado - pagamento expirado"
+            : "Status do pagamento"
+        }
       >
         {icon}
       </div>
       <div
         role="status"
         aria-live="polite"
+        aria-atomic="true"
         className="text-lg font-semibold text-center"
       >
         {statusText}
       </div>
+      <span className="sr-only">
+        {status === "pago" &&
+          "Pagamento aprovado com sucesso. Seu pedido foi confirmado."}
+        {status === "falhou" &&
+          "Pagamento não foi aprovado. Por favor, tente outro método."}
+        {status === "expirado" &&
+          "O tempo para pagamento expirou. Por favor, inicie um novo processo."}
+      </span>
     </div>
   )
 }
