@@ -12,7 +12,7 @@ export default function AuthLayout({
   title?: string
 }) {
   return (
-    <div className="min-h-screen flex lg:flex-row justify-center items-center p-8  bg-linear-to-b from-blue-950 to-blue-700 ">
+    <div className="min-h-screen flex lg:flex-row justify-center items-center p-8 bg-gradient-to-b from-blue-950 to-blue-700">
       <div className="hidden lg:flex">
         <Logo
           src={cellcard}
