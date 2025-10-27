@@ -58,61 +58,102 @@ export default function CheckoutPage() {
           </CardHeader>
 
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="fullName">Nome Completo</Label>
-                <Input
-                  id="fullName"
-                  name="fullName"
-                  defaultValue={user?.name ?? ""}
-                />
-                <Label className="mt-2" htmlFor="cpf">
-                  CPF
-                </Label>
-                <Input id="cpf" name="cpf" defaultValue={user?.cpf ?? ""} />
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="fullName">Nome Completo</Label>
+                  <Input
+                    id="fullName"
+                    name="fullName"
+                    defaultValue={user?.name ?? ""}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="cpf">CPF</Label>
+                  <Input id="cpf" name="cpf" defaultValue={user?.cpf ?? ""} />
+                </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="phone">Telefone</Label>
-                <Input
-                  id="phone"
-                  name="phone"
-                  defaultValue={user?.phone ?? ""}
-                />
-                <Label className="mt-2" htmlFor="zipCode">
-                  CEP
-                </Label>
-                <Input
-                  id="zipCode"
-                  name="zipCode"
-                  defaultValue={user?.zipCode ?? ""}
-                />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Telefone</Label>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    defaultValue={user?.phone ?? ""}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="zipCode">CEP</Label>
+                  <Input
+                    id="zipCode"
+                    name="zipCode"
+                    defaultValue={user?.zipCode ?? ""}
+                  />
+                </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="city">Cidade</Label>
-                <Input id="city" name="city" defaultValue={user?.city ?? ""} />
-                <Label className="mt-2" htmlFor="state">
-                  Estado
-                </Label>
-                <Input
-                  id="state"
-                  name="state"
-                  defaultValue={user?.state ?? ""}
-                />
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="street">Endereço</Label>
+                  <Input
+                    id="street"
+                    name="street"
+                    defaultValue={user?.street ?? ""}
+                    placeholder="Rua, Avenida, etc."
+                  />
+                </div>
+
+                <div className="space-y-2 md:w-32">
+                  <Label htmlFor="number">Número</Label>
+                  <Input
+                    id="number"
+                    name="number"
+                    defaultValue={user?.number}
+                  />
+                </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="neighborhood">Bairro</Label>
-                <Input
-                  id="neighborhood"
-                  name="neighborhood"
-                  defaultValue={user?.neighborhood ?? ""}
-                />
-                <Label className="mt-2" htmlFor="number">
-                  Número
-                </Label>
-                <Input id="number" name="number" defaultValue={user?.number} />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="neighborhood">Bairro</Label>
+                  <Input
+                    id="neighborhood"
+                    name="neighborhood"
+                    defaultValue={user?.neighborhood ?? ""}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="complement">Complemento</Label>
+                  <Input
+                    id="complement"
+                    name="complement"
+                    placeholder="Apto, Bloco, etc. (opcional)"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="city">Cidade</Label>
+                  <Input
+                    id="city"
+                    name="city"
+                    defaultValue={user?.city ?? ""}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="state">Estado</Label>
+                  <Input
+                    id="state"
+                    name="state"
+                    defaultValue={user?.state ?? ""}
+                  />
+                </div>
               </div>
             </div>
           </CardContent>
