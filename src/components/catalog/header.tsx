@@ -1,6 +1,6 @@
 "use client"
 
-import { ShoppingCartIcon } from "lucide-react"
+import { LogOut, ShoppingCartIcon } from "lucide-react"
 import { SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "../ui/button"
 import { ModeToggle } from "../ui/mode-toggle"
@@ -40,13 +40,14 @@ export function Header() {
       <div className="flex gap-2">
         <ModeToggle />
         <Button
-          variant={"outline"}
+          className="dark:bg-zi"
+          variant={"secondary"}
           onClick={() => {
             setTheme("light")
             logout()
           }}
         >
-          sair
+          <LogOut />
         </Button>
       </div>
     </header>
